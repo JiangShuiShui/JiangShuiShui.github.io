@@ -6,15 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Archives | 江水的小站</title>
+  <title>面试题 | 江水的小站</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="江水的小站">
-<meta property="og:url" content="http://example.com/archives/index.html">
+  <meta name="description" content="一、面向对象举例：洗衣机洗衣服  面向过程：1、打开洗衣机 —&gt; 2、放衣服 —&gt; 3、放洗衣粉 —&gt;4、清洗 —&gt;5、烘干  面向对象：  人：打开洗衣机、放衣服、放洗衣粉 ​                    洗衣机：清洗、烘干">
+<meta property="og:type" content="article">
+<meta property="og:title" content="面试题">
+<meta property="og:url" content="http://example.com/2021/07/11/%E9%9D%A2%E8%AF%95%E9%A2%98/index.html">
 <meta property="og:site_name" content="江水的小站">
+<meta property="og:description" content="一、面向对象举例：洗衣机洗衣服  面向过程：1、打开洗衣机 —&gt; 2、放衣服 —&gt; 3、放洗衣粉 —&gt;4、清洗 —&gt;5、烘干  面向对象：  人：打开洗衣机、放衣服、放洗衣粉 ​                    洗衣机：清洗、烘干">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/images/%E9%9D%A2%E8%AF%95%E9%A2%98/image-20210811121200170.png">
+<meta property="article:published_time" content="2021-07-11T03:50:15.000Z">
+<meta property="article:modified_time" content="2021-08-11T09:04:43.510Z">
 <meta property="article:author" content="江水">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/%E9%9D%A2%E8%AF%95%E9%A2%98/image-20210811121200170.png">
   
     <link rel="alternative" href="/atom.xml" title="江水的小站" type="application/atom+xml">
   
@@ -136,140 +142,279 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-面试题" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      面试题
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/07/11/%E9%9D%A2%E8%AF%95%E9%A2%98/" class="archive-article-date">
+
+        
+        <a href="/2021/07/11/%E9%9D%A2%E8%AF%95%E9%A2%98/" class="archive-article-date">
   	<time datetime="2021-07-11T03:50:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-11</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/07/11/%E9%9D%A2%E8%AF%95%E9%A2%98/">面试题</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
+        
+      </header>
     
-    
+    <div class="article-entry" itemprop="articleBody">
       
-        </div></section>
+        <h2 id="一、面向对象"><a href="#一、面向对象" class="headerlink" title="一、面向对象"></a>一、面向对象</h2><p><strong>举例：</strong>洗衣机洗衣服</p>
+<ul>
+<li><p>面向过程：1、打开洗衣机 —&gt; 2、放衣服 —&gt; 3、放洗衣粉 —&gt;4、清洗 —&gt;5、烘干</p>
+</li>
+<li><p>面向对象：  人：打开洗衣机、放衣服、放洗衣粉</p>
+<p>​                    洗衣机：清洗、烘干</p>
+</li>
+</ul>
+<span id="more"></span>
+
+<p><strong>三大特性</strong></p>
+<ol>
+<li><p><strong>封装</strong>：封装的意义，在于明确标识出允许外部使用的所有成员函数和数据项</p>
+<p>内部细节对外部调用透明，外部调用无需修改或者关心内部实现。</p>
+<p>例如：</p>
+<p>（1）、javabean的属性私有，提供get set方法对外访问，因为属性的赋值或者逻辑只能有javabean本身决定，而不能由外部胡乱修改</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> String name;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span></span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.name = <span class="string">&quot;icbc_&quot;</span> + name; <span class="comment">//类的内部自己添加前缀，外部不能修改</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（2）、orm框架</p>
+<p>操作数据库，我们无需关心链接是如何建立的、sql是如何执行的，只需要引入mybatis，调用方法即可</p>
+</li>
+<li><p><strong>继承</strong>：继承基类的方法，并作出自己的改变和/或扩展</p>
+<p>子类共性的方法或者属性直接使用父类的，而不需要自己再自定义，只需扩展自己个性化的</p>
+</li>
+<li><p><strong>多态</strong>：基于对象所属类的不同，外部对同一个方法的调用，实际执行的逻辑不同。</p>
+<p>满足条件：继承、方法重写、父类引用指向子类对象</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">父类类型 变量名 = <span class="keyword">new</span> 子类对象 ;</span><br><span class="line">变量名.方法名();</span><br></pre></td></tr></table></figure>
+
+<p>但是，无法调用子类特有的方法。</p>
+</li>
+</ol>
+<h2 id="二、JDK、JRE、JVM区别和联系"><a href="#二、JDK、JRE、JVM区别和联系" class="headerlink" title="二、JDK、JRE、JVM区别和联系"></a>二、JDK、JRE、JVM区别和联系</h2><p><img src="/../images/%E9%9D%A2%E8%AF%95%E9%A2%98/image-20210811121200170.png" alt="image-20210811121200170"></p>
+<h2 id="三、-和equals比较"><a href="#三、-和equals比较" class="headerlink" title="三、==和equals比较"></a>三、==和equals比较</h2><ul>
+<li>==对比的是栈中的值，基本数据类型是变量值，引用类型是堆中内存对象的地址</li>
+<li>equals：object中默认也是采用==比较，但通常会重写</li>
+</ul>
+<p>Object</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object obj)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> (<span class="keyword">this</span> == obj);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>String</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object anObject)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span> == anObject) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (anObject <span class="keyword">instanceof</span> String) &#123;</span><br><span class="line">        String anotherString = (String)anObject;</span><br><span class="line">        <span class="keyword">int</span> n = value.length;</span><br><span class="line">        <span class="keyword">if</span> (n == anotherString.value.length) &#123;</span><br><span class="line">            <span class="keyword">char</span> v1[] = value;</span><br><span class="line">            <span class="keyword">char</span> v2[] = anotherString.value;</span><br><span class="line">            <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">while</span> (n-- != <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (v1[i] != v2[i])</span><br><span class="line">                    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">                i++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>实际上是比较的字符串里的每个字符</p>
+<h2 id="四、final"><a href="#四、final" class="headerlink" title="四、final"></a>四、final</h2><p>特点：</p>
+<ul>
+<li>修饰类：表示类不可被继承</li>
+<li>修饰方法：表示方法不可被子类覆盖，但是可以重载</li>
+<li>修饰变量：表示变量一旦被赋值就不可以更改它的值。</li>
+</ul>
+<p>（1）修饰成员变量</p>
+<ul>
+<li>如果final修饰的是类变量(static修饰的)，只能在生声明该变量时或者在静态代码块中指定初始值</li>
+<li>如果修饰的是成员变量，可以在声明该变量、非静态代码块或者构造器中指定初始值。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FinalVar</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">final</span> <span class="keyword">static</span> <span class="keyword">int</span> a; <span class="comment">//类变量在声明时就需要赋值，或者在静态代码块中赋值</span></span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        a = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">final</span> <span class="keyword">int</span> b; <span class="comment">//成员变量在声明该变量、非静态代码块或者构造器中指定初始值。</span></span><br><span class="line">    &#123;</span><br><span class="line">        b = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（2）修饰局部变量</p>
+<ul>
+<li> 系统不会为局部变量进行初始化，局部变量必须由程序员显示初始化。因此使用final修饰局部变量时，既可以在定义是指定默认值，也可以不指定，而在后面的代码中对final变量赋初始值（仅一次）。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">final</span> <span class="keyword">int</span> localA; <span class="comment">//局部变量只声明不初始化，不会报错，与final无关</span></span><br><span class="line">    localA = <span class="number">0</span>;     <span class="comment">//在使用之前一定要赋值</span></span><br><span class="line">    <span class="comment">//localA = 1;   //不能二次赋值</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（3）修饰引用类型数据</p>
+<ul>
+<li>在对其初始化之后，不能再指向另一个对象，但对象内部是可以改变的</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">final</span> <span class="keyword">int</span>[] iArr = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>&#125;;</span><br><span class="line">iArr[<span class="number">0</span>] = <span class="number">0</span>; <span class="comment">//合法</span></span><br><span class="line">iArr = <span class="keyword">null</span>; <span class="comment">//非法</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="五、String、StringBuffer、StringBuilder"><a href="#五、String、StringBuffer、StringBuilder" class="headerlink" title="五、String、StringBuffer、StringBuilder"></a>五、String、StringBuffer、StringBuilder</h2><ul>
+<li>String是final修饰的，不可变，每次操作都会生成新的String对象</li>
+<li>StringBuffer和StringBuilder都是在原对象上操作</li>
+<li>StringBuffer是线程安全的，StringBuilder是线程不安全的</li>
+<li>StringBuffer方法都是synchronized修饰的</li>
+</ul>
+<p><strong>性能</strong> ：StringBuilder &gt; StringBuffer &gt; String</p>
+<p>场景：经常需要改变字符串内容时使用后面两个，优先使用StringBuilder，多线程使用共享变量时使用StringBuffer</p>
+<h2 id="六、重载和重写"><a href="#六、重载和重写" class="headerlink" title="六、重载和重写"></a>六、重载和重写</h2><p><strong>重载</strong>：同名不同参，方法名相同，参数类型、个数、顺序不同，其他方法返回值，访问修饰符等都没有要求</p>
+<p><strong>重写</strong>： 发生在父子类中，方法名、参数列表必须相同，返回值范围小于等于父类，抛出的异常范围小于等于父类，访问修饰符大于等于父类：</p>
+<h2 id="七、接口和抽象类"><a href="#七、接口和抽象类" class="headerlink" title="七、接口和抽象类"></a>七、接口和抽象类</h2><h3 id="1、基本语法区别"><a href="#1、基本语法区别" class="headerlink" title="1、基本语法区别"></a>1、基本语法区别</h3><p>Java中接口和抽象类的定义语法分别为interface与abstract关键字。</p>
+<p><strong>抽象类</strong>：在Java中被abstract关键字修饰的类称为抽象类，被abstract关键字修饰的方法称为抽象方法，抽象方法只有方法的声明，没有方法体。抽象类的特点：</p>
+<ul>
+<li>抽象类不能被实例化只能被继承；</li>
+<li>包含抽象方法的一定是抽象类，但是抽象类不一定含有抽象方法；</li>
+<li>抽象类中的抽象方法的修饰符只能为public或者protected，默认为public；</li>
+<li>一个子类继承一个抽象类，则子类必须实现父类抽象方法，否则子类也必须定义为抽象类；</li>
+<li>抽象类可以包含属性、方法、构造方法，但是构造方法不能用于实例化，主要用途是被子类调用。</li>
+</ul>
+<p><strong>接口</strong>：Java中接口使用interface关键字修饰，特点为:</p>
+<ul>
+<li>接口可以包含变量、方法；变量被隐式指定为public static final，方法被隐式指定为public abstract（JDK1.8之前）；</li>
+<li>接口支持多继承，即一个接口可以extends多个接口，间接的解决了Java中类的单继承问题；</li>
+<li>一个类可以实现多个接口；</li>
+<li>JDK1.8中对接口增加了新的特性：（1）、默认方法（default method）：JDK 1.8允许给接口添加非抽象的方法实现，但必须使用default关键字修饰；定义了default的方法可以不被实现子类所实现，但只能被实现子类的对象调用；如果子类实现了多个接口，并且这些接口包含一样的默认方法，则子类必须重写默认方法；（2）、静态方法（static method）：JDK 1.8中允许使用static关键字修饰一个方法，并提供实现，称为接口静态方法。接口静态方法只能通过接口调用（接口名.静态方法名）。</li>
+</ul>
+<p><strong>如下例子所示：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//接口</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Person</span></span>&#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> a=<span class="number">10</span>;</span><br><span class="line">  <span class="comment">//JDK1.8</span></span><br><span class="line">    <span class="function"><span class="keyword">default</span> <span class="keyword">void</span> <span class="title">sayHello</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Hello World&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">say</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//抽象类</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">say</span><span class="params">()</span></span>;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">eat</span><span class="params">()</span></span>&#123;&#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如上述代码所示：</p>
+<p>接口只能是功能的定义，而抽象类既可以为功能的定义也可以为功能的实现。</p>
+<h3 id="2、面试题：接口与抽象类的区别"><a href="#2、面试题：接口与抽象类的区别" class="headerlink" title="2、面试题：接口与抽象类的区别"></a>2、面试题：接口与抽象类的区别</h3><p><strong>相同点</strong></p>
+<p>（1）都不能被实例化 （2）接口的实现类或抽象类的子类都只有实现了接口或抽象类中的方法后才能实例化。</p>
+<p><strong>不同点</strong></p>
+<p>（1）接口只有定义，不能有方法的实现，java 1.8中可以定义default方法体，而抽象类可以有定义与实现，方法可在抽象类中实现。</p>
+<p>（2）实现接口的关键字为implements，继承抽象类的关键字为extends。一个类可以实现多个接口，但一个类只能继承一个抽象类。所以，使用接口可以间接地实现多重继承。</p>
+<p>（3）接口强调特定功能的实现，而抽象类强调所属关系。</p>
+<p>（4）接口成员变量默认为public static final，必须赋初值，不能被修改；其所有的成员方法都是public、abstract的。抽象类中成员变量默认default，可在子类中被重新定义，也可被重新赋值；抽象方法被abstract修饰，不能被private、static、synchronized和native等修饰，必须以分号结尾，不带花括号。</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/12/13/Java%E8%99%9A%E6%8B%9F%E6%9C%BA/" class="archive-article-date">
-  	<time datetime="2018-12-13T10:43:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-13</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/12/13/Java%E8%99%9A%E6%8B%9F%E6%9C%BA/">Java虚拟机</a>
-    </h1>
-  
+      
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2021/07/11/%E9%9D%A2%E8%AF%95%E9%A2%98/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/12/11/Java%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6/" class="archive-article-date">
-  	<time datetime="2018-12-11T10:49:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-11</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2018/12/13/Java%E8%99%9A%E6%8B%9F%E6%9C%BA/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Java虚拟机</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/12/11/Java%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6/">Java类加载机制</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1"><span class="toc-number">1.</span> <span class="toc-text">一、面向对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81JDK%E3%80%81JRE%E3%80%81JVM%E5%8C%BA%E5%88%AB%E5%92%8C%E8%81%94%E7%B3%BB"><span class="toc-number">2.</span> <span class="toc-text">二、JDK、JRE、JVM区别和联系</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81-%E5%92%8Cequals%E6%AF%94%E8%BE%83"><span class="toc-number">3.</span> <span class="toc-text">三、&#x3D;&#x3D;和equals比较</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81final"><span class="toc-number">4.</span> <span class="toc-text">四、final</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81String%E3%80%81StringBuffer%E3%80%81StringBuilder"><span class="toc-number">5.</span> <span class="toc-text">五、String、StringBuffer、StringBuilder</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E9%87%8D%E8%BD%BD%E5%92%8C%E9%87%8D%E5%86%99"><span class="toc-number">6.</span> <span class="toc-text">六、重载和重写</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E6%8E%A5%E5%8F%A3%E5%92%8C%E6%8A%BD%E8%B1%A1%E7%B1%BB"><span class="toc-number">7.</span> <span class="toc-text">七、接口和抽象类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95%E5%8C%BA%E5%88%AB"><span class="toc-number">7.1.</span> <span class="toc-text">1、基本语法区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E9%9D%A2%E8%AF%95%E9%A2%98%EF%BC%9A%E6%8E%A5%E5%8F%A3%E4%B8%8E%E6%8A%BD%E8%B1%A1%E7%B1%BB%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">7.2.</span> <span class="toc-text">2、面试题：接口与抽象类的区别</span></a></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/12/08/bubbleSort/" class="archive-article-date">
-  	<time datetime="2018-12-08T03:41:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-08</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/12/08/bubbleSort/">冒泡排序</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
+
+  
 
 
           </div>
@@ -292,8 +437,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
