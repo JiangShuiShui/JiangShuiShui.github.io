@@ -16,8 +16,14 @@
 <meta property="og:description" content="一、面向对象举例：洗衣机洗衣服  面向过程：1、打开洗衣机 —&gt; 2、放衣服 —&gt; 3、放洗衣粉 —&gt;4、清洗 —&gt;5、烘干  面向对象：  人：打开洗衣机、放衣服、放洗衣粉 ​                    洗衣机：清洗、烘干">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/images/%E9%9D%A2%E8%AF%95%E9%A2%98/image-20210811121200170.png">
+<meta property="og:image" content="http://example.com/images/%E9%9D%A2%E8%AF%95%E9%A2%98/image-20210810173715537.png">
+<meta property="og:image" content="http://example.com/images/%E9%9D%A2%E8%AF%95%E9%A2%98/image-20210813171934338.png">
+<meta property="og:image" content="http://example.com/images/%E9%9D%A2%E8%AF%95%E9%A2%98/4840092-f85e70e2262b7878.png">
+<meta property="og:image" content="http://example.com/images/%E9%9D%A2%E8%AF%95%E9%A2%98/4982424-cca4d4ce88ffad72.png">
+<meta property="og:image" content="http://example.com/images/%E9%9D%A2%E8%AF%95%E9%A2%98/4982424-28b7f63125fe13f3.png">
+<meta property="og:image" content="http://example.com/images/%E9%9D%A2%E8%AF%95%E9%A2%98/4982424-4417532994f3b5de.png">
 <meta property="article:published_time" content="2021-07-11T03:50:15.000Z">
-<meta property="article:modified_time" content="2021-08-11T09:04:43.510Z">
+<meta property="article:modified_time" content="2021-08-23T11:52:37.605Z">
 <meta property="article:author" content="江水">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/images/%E9%9D%A2%E8%AF%95%E9%A2%98/image-20210811121200170.png">
@@ -261,13 +267,296 @@
 
 <p>如上述代码所示：</p>
 <p>接口只能是功能的定义，而抽象类既可以为功能的定义也可以为功能的实现。</p>
-<h3 id="2、面试题：接口与抽象类的区别"><a href="#2、面试题：接口与抽象类的区别" class="headerlink" title="2、面试题：接口与抽象类的区别"></a>2、面试题：接口与抽象类的区别</h3><p><strong>相同点</strong></p>
-<p>（1）都不能被实例化 （2）接口的实现类或抽象类的子类都只有实现了接口或抽象类中的方法后才能实例化。</p>
-<p><strong>不同点</strong></p>
-<p>（1）接口只有定义，不能有方法的实现，java 1.8中可以定义default方法体，而抽象类可以有定义与实现，方法可在抽象类中实现。</p>
-<p>（2）实现接口的关键字为implements，继承抽象类的关键字为extends。一个类可以实现多个接口，但一个类只能继承一个抽象类。所以，使用接口可以间接地实现多重继承。</p>
-<p>（3）接口强调特定功能的实现，而抽象类强调所属关系。</p>
-<p>（4）接口成员变量默认为public static final，必须赋初值，不能被修改；其所有的成员方法都是public、abstract的。抽象类中成员变量默认default，可在子类中被重新定义，也可被重新赋值；抽象方法被abstract修饰，不能被private、static、synchronized和native等修饰，必须以分号结尾，不带花括号。</p>
+<p><strong>接口的设计目的，是对类的行为进行约束</strong>（准确说是”有“约束，因为接口不能规范类不可以有什么行为），也就是提供一种机制，可以强制的要求不同的类具有相同的行为。它只是约束了行为的有无，但不对如何实现进行限制。</p>
+<p><strong>抽象类的设计目的，是代码复用</strong>。当不同的类具有某些相同的行为（记为行为集合A），且其中一部分行为的实现方式一致时（A的非真子集，记为B），可以让这些类都派生于一个抽象类。在这个抽象类中实现了了B，那所有子类中就可以不用再实现B，这就达到了代码的复用。而A减B的部分，留给各个子类自己实现。也正是因为A-B在这里没有实现，所以抽象类不允许实例化。</p>
+<p><strong>抽象类是对类本质的抽象</strong>，表达的是is a 的关系，比如：BMW is a Car。抽象类包含并实现了子类的通用特性，将子类存在差异化的特性进行抽象，交由子类去实现。</p>
+<p><strong>接口是对行为的抽象</strong>，表达的是like a 的关系，比如： Bird like a Aircraft（像飞行器一样可以飞），但其本质上is a Bird。接口的核心是定义行为，即实现类可以做什么，至于实现类主体是谁、如何实现的，接口并不关心。</p>
+<p>使用场景：当你关注一个事物的本质的时候，用抽象类；当你关注一个操作的时候，用接口。</p>
+<p>抽象类的功能要远超过接口，但是，定义抽象类的代价高。因为高级语言来说（从实际设计上来说）每个类只能继承一个类，所以在这个顶级抽象类中，你必须继承或编写其所有子类的所有共性。虽然接口在功能上会弱化许多，但是它只是针对一个动作的描述。而且你可以在一个类中同时实现多个接口。在设计阶段会降低难度。</p>
+<h2 id="八、List和Set"><a href="#八、List和Set" class="headerlink" title="八、List和Set"></a>八、List和Set</h2><ul>
+<li>List：有序，按对象进入的顺序保存对象，可重复，允许多个Null元素对象，可以使用iterator取出所有元素，再逐一遍历，还可以使用get(int index)获取指定下标的元素。</li>
+<li>Set：无序，不可重复，最多允许有一个Null元素对象，取元素时只能用iterator接口取得所有元素，再逐一遍历各个元素。</li>
+</ul>
+<h2 id="九、hashCode与equals"><a href="#九、hashCode与equals" class="headerlink" title="九、hashCode与equals"></a>九、hashCode与equals</h2><p>hashCode()的作用是获取哈希码，也被称为散列码，它实际上是返回一个int整数。这个哈希码的作用是确定该对象在哈希表中的索引位置。hashCode()定义在JDK的Object.java中，Java中任何类都包含有hashCode()函数。散列表存储的是键值对(key-value)，它的特点是：能根据“键”快速的检索对应的“值”。这其中就利用了散列码！（可以快速找到所需要的对象）</p>
+<p><strong>为什么要有hashCode？</strong></p>
+<p>举例：<strong>HashSet如何检查重复</strong></p>
+<p>对象加入HashSet时，HashSet会先计算对象的hashCode值来判断对象加入的位置，看该位置是否有值，如果没有值，HashSet会假设对象没有重复出现。但是如果发现有值，这是会调用equals()方法来检查两个对象是否真的相同。如果两者相同，HashSet就不会让其加入成功。如果不同的话，就会重新散列到其他位置。这样就大大减少了equals的次数，提高了执行速度。</p>
+<ul>
+<li>如果两个对象相等，则hashCode一定相同</li>
+<li>两个对象相等，对两个对象分别调用equals方法都返回true</li>
+<li>两个对象有相同的hashCode值，他们也并不一定是相等的</li>
+<li>因此，equals方法被覆盖过，则hashCode方法也必须被覆盖</li>
+<li>hashCode()的默认行为是对堆上的对象产生独特值，如果没有重写hashCode()，则该class的两个对象无论如何都不会相等（即使这两个对象有相同的数据）</li>
+</ul>
+<h2 id="十、ArrayList和LinkedList区别"><a href="#十、ArrayList和LinkedList区别" class="headerlink" title="十、ArrayList和LinkedList区别"></a>十、ArrayList和LinkedList区别</h2><p>ArrayList：基于动态数组，连续内存存储，适合下标访问（随机访问），扩容机制：因为数组长度固定，超出长度存数据时需要新建数组，然后将老数组的数据拷贝到新数组，如果不是尾部插入数据还会涉及到元素的移动（往后复制一份数据，再插入新元素），但是<strong>使用<u>尾插法</u>并<u>指定初始容量</u>可以极大提升性能，甚至超过LinkedList</strong>（其需要大量创建node对象）</p>
+<p>LinkedList：基于链表，可以存储在分散的内存中，适合做数据插入及删除操作，不适合查询（需要逐一遍历）</p>
+<p>遍历LinkedList必须使用iterator，不能使用for循环，因为每次for循环体内通过get(i)取得某一元素时都需要堆list重新进行遍历，性能消耗极大。另外不要试图使用indexOf等返回元素索引，并利用其进行遍历，使用indexOf对list进行了遍历，当结果为空时会遍历完整个列表。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">indexOf</span><span class="params">(Object o)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> index = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span> (o == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">for</span> (Node&lt;E&gt; x = first; x != <span class="keyword">null</span>; x = x.next) &#123;</span><br><span class="line">            <span class="keyword">if</span> (x.item == <span class="keyword">null</span>)</span><br><span class="line">                <span class="keyword">return</span> index;</span><br><span class="line">            index++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">for</span> (Node&lt;E&gt; x = first; x != <span class="keyword">null</span>; x = x.next) &#123;</span><br><span class="line">            <span class="keyword">if</span> (o.equals(x.item))</span><br><span class="line">                <span class="keyword">return</span> index;</span><br><span class="line">            index++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="十一、HashMap和HashTable区别"><a href="#十一、HashMap和HashTable区别" class="headerlink" title="十一、HashMap和HashTable区别"></a>十一、HashMap和HashTable区别</h2><p>区别：</p>
+<ol>
+<li>HashMap方法没有synchronized修饰，线程非安全，HashTable线程安全</li>
+<li>HashMap允许key和value为Null，HashTable不允许</li>
+</ol>
+<p>底层实现：数组+链表/红黑树</p>
+<p>jdk8开始，链表高度到8、数组长度超过64，链表转变为红黑树，元素以内部类Node节点存在</p>
+<ul>
+<li>计算key的hash值，二次hash然后对数组长度取模，对应到数组下标</li>
+<li>如果没有产生hash冲突（下标位置没有元素），则直接创建Node存入数组</li>
+<li>如果产生hash冲突，先进行equals比较，相同则取代该元素，不同，则判断链表高度插入链表，链表高度达到8，并且数组长度到64则转变为红黑树，长度低于6则将红黑树转回链表</li>
+<li>key为null时，存在下标为0的位置</li>
+<li>数组长度默认为16，负载因子0.75</li>
+</ul>
+<h2 id="十二、ConcurrentHashMap原理"><a href="#十二、ConcurrentHashMap原理" class="headerlink" title="十二、ConcurrentHashMap原理"></a>十二、ConcurrentHashMap原理</h2><p>源码分析详情：<a target="_blank" rel="noopener" href="https://blog.csdn.net/sihai12345/article/details/79383766">https://blog.csdn.net/sihai12345/article/details/79383766</a></p>
+<p>jdk7：</p>
+<p>数据结构：ReentrantLock+Segment+HashEntry，一个Segment中包含一个HashEntry数组，每个HashEntry又是一个链表结构</p>
+<p>jdk8：</p>
+<p>数据结构：synchronize + CAS（乐观锁） + 红黑树，Node的val和next都是用volatile修饰的，保证可见性</p>
+<p>查找、替换、赋值都使用CAS</p>
+<p>锁：锁数组上的一个元素的链表的head节点，不影响其他元素的读写，锁的粒度更加精细，效率更高。扩容时，阻塞所有的读写操作、并发扩容</p>
+<p>读操作无锁：</p>
+<p>数组用volatile修饰，保证扩容时被读线程感知。</p>
+<p>举例put()操作：</p>
+<p>直接放入数组中的空位时，使用CAS。往链表和红黑树上添加元素时，使用synchronized。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> V <span class="title">put</span><span class="params">(K key, V value)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> putVal(key, value, <span class="keyword">false</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">final</span> V <span class="title">putVal</span><span class="params">(K key, V value, <span class="keyword">boolean</span> onlyIfAbsent)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (key == <span class="keyword">null</span> || value == <span class="keyword">null</span>) <span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException();</span><br><span class="line">    <span class="comment">// 得到 hash 值</span></span><br><span class="line">    <span class="keyword">int</span> hash = spread(key.hashCode());</span><br><span class="line">    <span class="comment">// 用于记录相应链表的长度</span></span><br><span class="line">    <span class="keyword">int</span> binCount = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (Node&lt;K,V&gt;[] tab = table;;) &#123;</span><br><span class="line">        Node&lt;K,V&gt; f; <span class="keyword">int</span> n, i, fh;</span><br><span class="line">        <span class="comment">// 如果数组&quot;空&quot;，进行数组初始化</span></span><br><span class="line">        <span class="keyword">if</span> (tab == <span class="keyword">null</span> || (n = tab.length) == <span class="number">0</span>)</span><br><span class="line">            <span class="comment">// 初始化数组，后面会详细介绍</span></span><br><span class="line">            tab = initTable();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 找该 hash 值对应的数组下标，得到第一个节点 f</span></span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> ((f = tabAt(tab, i = (n - <span class="number">1</span>) &amp; hash)) == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="comment">// 如果数组该位置为空，</span></span><br><span class="line">            <span class="comment">//    用一次 CAS 操作将这个新值放入其中即可，这个 put 操作差不多就结束了，可以拉到最后面了</span></span><br><span class="line">            <span class="comment">//          如果 CAS 失败，那就是有并发操作，进到下一个循环就好了</span></span><br><span class="line">            <span class="keyword">if</span> (casTabAt(tab, i, <span class="keyword">null</span>,</span><br><span class="line">                         <span class="keyword">new</span> Node&lt;K,V&gt;(hash, key, value, <span class="keyword">null</span>)))</span><br><span class="line">                <span class="keyword">break</span>;                   <span class="comment">// no lock when adding to empty bin</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// hash 居然可以等于 MOVED，这个需要到后面才能看明白，不过从名字上也能猜到，肯定是因为在扩容</span></span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> ((fh = f.hash) == MOVED)</span><br><span class="line">            <span class="comment">// 帮助数据迁移，这个等到看完数据迁移部分的介绍后，再理解这个就很简单了</span></span><br><span class="line">            tab = helpTransfer(tab, f);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">else</span> &#123; <span class="comment">// 到这里就是说，f 是该位置的头结点，而且不为空</span></span><br><span class="line"></span><br><span class="line">            V oldVal = <span class="keyword">null</span>;</span><br><span class="line">            <span class="comment">// 获取数组该位置的头结点的监视器锁</span></span><br><span class="line">            <span class="keyword">synchronized</span> (f) &#123;</span><br><span class="line">                <span class="keyword">if</span> (tabAt(tab, i) == f) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (fh &gt;= <span class="number">0</span>) &#123; <span class="comment">// 头结点的 hash 值大于 0，说明是链表</span></span><br><span class="line">                        <span class="comment">// 用于累加，记录链表的长度</span></span><br><span class="line">                        binCount = <span class="number">1</span>;</span><br><span class="line">                        <span class="comment">// 遍历链表</span></span><br><span class="line">                        <span class="keyword">for</span> (Node&lt;K,V&gt; e = f;; ++binCount) &#123;</span><br><span class="line">                            K ek;</span><br><span class="line">                            <span class="comment">// 如果发现了&quot;相等&quot;的 key，判断是否要进行值覆盖，然后也就可以 break 了</span></span><br><span class="line">                            <span class="keyword">if</span> (e.hash == hash &amp;&amp;</span><br><span class="line">                                ((ek = e.key) == key ||</span><br><span class="line">                                 (ek != <span class="keyword">null</span> &amp;&amp; key.equals(ek)))) &#123;</span><br><span class="line">                                oldVal = e.val;</span><br><span class="line">                                <span class="keyword">if</span> (!onlyIfAbsent)</span><br><span class="line">                                    e.val = value;</span><br><span class="line">                                <span class="keyword">break</span>;</span><br><span class="line">                            &#125;</span><br><span class="line">                            <span class="comment">// 到了链表的最末端，将这个新值放到链表的最后面</span></span><br><span class="line">                            Node&lt;K,V&gt; pred = e;</span><br><span class="line">                            <span class="keyword">if</span> ((e = e.next) == <span class="keyword">null</span>) &#123;</span><br><span class="line">                                pred.next = <span class="keyword">new</span> Node&lt;K,V&gt;(hash, key,</span><br><span class="line">                                                          value, <span class="keyword">null</span>);</span><br><span class="line">                                <span class="keyword">break</span>;</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">else</span> <span class="keyword">if</span> (f <span class="keyword">instanceof</span> TreeBin) &#123; <span class="comment">// 红黑树</span></span><br><span class="line">                        Node&lt;K,V&gt; p;</span><br><span class="line">                        binCount = <span class="number">2</span>;</span><br><span class="line">                        <span class="comment">// 调用红黑树的插值方法插入新节点</span></span><br><span class="line">                        <span class="keyword">if</span> ((p = ((TreeBin&lt;K,V&gt;)f).putTreeVal(hash, key,</span><br><span class="line">                                                       value)) != <span class="keyword">null</span>) &#123;</span><br><span class="line">                            oldVal = p.val;</span><br><span class="line">                            <span class="keyword">if</span> (!onlyIfAbsent)</span><br><span class="line">                                p.val = value;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// binCount != 0 说明上面在做链表操作</span></span><br><span class="line">            <span class="keyword">if</span> (binCount != <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="comment">// 判断是否要将链表转换为红黑树，临界值和 HashMap 一样，也是 8</span></span><br><span class="line">                <span class="keyword">if</span> (binCount &gt;= TREEIFY_THRESHOLD)</span><br><span class="line">                    <span class="comment">// 这个方法和 HashMap 中稍微有一点点不同，那就是它不是一定会进行红黑树转换，</span></span><br><span class="line">                    <span class="comment">// 如果当前数组的长度小于 64，那么会选择进行数组扩容，而不是转换为红黑树</span></span><br><span class="line">                    <span class="comment">//    具体源码我们就不看了，扩容部分后面说</span></span><br><span class="line">                    treeifyBin(tab, i);</span><br><span class="line">                <span class="keyword">if</span> (oldVal != <span class="keyword">null</span>)</span><br><span class="line">                    <span class="keyword">return</span> oldVal;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// </span></span><br><span class="line">    addCount(<span class="number">1L</span>, binCount);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="十三、如何实现一个IOC容器"><a href="#十三、如何实现一个IOC容器" class="headerlink" title="十三、如何实现一个IOC容器"></a>十三、如何实现一个IOC容器</h2><ol>
+<li>配置文件配置包扫描路径</li>
+<li>递归包扫描获取.class文件</li>
+<li>反射、确定需要交给IOC管理的类</li>
+<li>对需要注入的类进行依赖注入</li>
+</ol>
+<ul>
+<li>配置文件中指定需要扫描的包路径</li>
+<li>定义一些注解，分别表示访问控制层、业务持久层、数据持久层、依赖注入层、获取配置文件注解</li>
+<li>从配置文件中获取需要扫描的包路径，获取到当前路径下的文件信息和文件夹信息，我们将当前路径所有以.class结尾的文件添加到一个Set集合中进行存储</li>
+<li>遍历这个Set集合，获取在类上有指定注解的类，并将其交给IOC容器，定义一个安全的Map来存储这些对象</li>
+<li>遍历这个IOC容器，获取到每一个类的实例，判断里面是否有依赖其他类的实例，然后进行递归注入</li>
+</ul>
+<h2 id="十四、什么是字节码？采用字节码的好处"><a href="#十四、什么是字节码？采用字节码的好处" class="headerlink" title="十四、什么是字节码？采用字节码的好处"></a>十四、什么是字节码？采用字节码的好处</h2><p>简单说就是.class文件</p>
+<p>java中的编译器和解释器：</p>
+<p>java中引入了虚拟机的概念，即在机器和编译程序之间加入了一层抽象的虚拟的机器，这台虚拟机在任何平台上都提供给编译程序一个共同的接口。</p>
+<p>编译程序只需要面向虚拟机，生成虚拟机能够理解的代码（.class文件），然后由<strong>解释器</strong>来将虚拟机代码转换为特定系统的机器码执行。</p>
+<p>Java源代码—-&gt;编译器—-&gt;jvm可执行的java字节码—-&gt;jvm—-&gt;jvm中解释器—-&gt;机器可执行的二进制机器码—-&gt;程序运行。</p>
+<p>采用字节码的好处：</p>
+<p>java语言通过字节码的方式，在一定程度上解决了传统解释型语言执行效率低的问题，同时又保留了解释型语言可移植的特点。所以java程序运行时比较高效，而且，由于字节码并不专对一种特定的机器，因此，java一处编译，处处运行。</p>
+<h2 id="十五、Java类加载器"><a href="#十五、Java类加载器" class="headerlink" title="十五、Java类加载器"></a>十五、Java类加载器</h2><p>引导类加载器（bootsrapLoader）：加载bin目录下的jar包和class文件</p>
+<p>扩展类加载器（ExtClassLoader）：加载lib/ext目录下的jar包和class文件</p>
+<p>应用类加载器（AppClassLoader）：加载classpath路径下的文件</p>
+<p>继承ClassLoader实现自定义类加载器，该类有两个核心方法</p>
+<ul>
+<li><p>loadClass(String, boolean)，实现了<strong>双亲委派机制</strong></p>
+</li>
+<li><p>findClass，默认实现是空方法</p>
+<p>所以我们自定义类加载器主要是<strong>重写findClass方法</strong>。</p>
+</li>
+</ul>
+<h2 id="十六、双亲委派模型"><a href="#十六、双亲委派模型" class="headerlink" title="十六、双亲委派模型"></a>十六、双亲委派模型</h2><p><img src="/../images/%E9%9D%A2%E8%AF%95%E9%A2%98/image-20210810173715537.png" alt="img"></p>
+<p><strong>为什么要设计双亲委派机制？</strong></p>
+<ul>
+<li>沙箱安全机制：自己写的java.lang.String.class类不会被加载，这样便可以防止核心API库被随意篡改</li>
+</ul>
+<ul>
+<li>避免类的重复加载：当父亲已经加载了该类时，就没有必要子ClassLoader再加载一次，保证——<strong>被加载类的唯一性</strong></li>
+</ul>
+<p><strong>全盘负责委托机制</strong>：<br>“<strong>全盘负责</strong>”是指当一个ClassLoder装载一个类时，除非显示的使用另外一个ClassLoder，该类所依赖及引用的类也由这个ClassLoder载入。</p>
+<h2 id="十七、Java中的异常体系"><a href="#十七、Java中的异常体系" class="headerlink" title="十七、Java中的异常体系"></a>十七、Java中的异常体系</h2><p>Java中所有异常都来自顶级父类Throwable<br>Throwable下有两个子类：Exception和Error<br>Error是程序无法处理的错误，一旦出现，程序将被迫停止运行，例如OOM<br>Exception不会导致程序停止，又分为两个部分RuntimeException运行时异常和CheckedException检查异常<br>RunTimeException常常发生在程序运行中，会导致当前线程执行失败。<br>CheckedException常常发生在程序编译过程中，会导致编译不通过。</p>
+<h2 id="十八、GC如何判断对象可以回收"><a href="#十八、GC如何判断对象可以回收" class="headerlink" title="十八、GC如何判断对象可以回收"></a>十八、GC如何判断对象可以回收</h2><p><strong>可达性分析算法</strong>：将<strong>“GC Roots”</strong> 对象作为起点，从这些节点开始向下搜索引用的对象，找到的对象都标记为<strong>非垃圾对象</strong>，其余未标记的对象都是垃圾对象 。</p>
+<p><strong>GC Roots</strong>根节点：线程栈的本地变量、静态变量、本地方法栈的变量等等 </p>
+<p><img src="/../images/%E9%9D%A2%E8%AF%95%E9%A2%98/image-20210813171934338.png" alt="image-20210813171934338"></p>
+<h2 id="十九、线程的生命周期及状态"><a href="#十九、线程的生命周期及状态" class="headerlink" title="十九、线程的生命周期及状态"></a>十九、线程的生命周期及状态</h2><p>线程状态。线程可以处于以下状态之一，一个线程在给定时间点只能处于一种状态。这些状态是不反映任何操作系统线程状态的虚拟机状态。</p>
+<ul>
+<li>NEW ：尚未启动的线程处于此状态</li>
+<li>RUNNABLE ：在Java虚拟机中执行的线程处于这种状态</li>
+<li>BLOCKED：阻塞，等待监视器锁定被阻止的线程处于此状态。</li>
+<li>WAITING ：无限期等待另一线程执行特定操作的线程处于此状态。</li>
+<li>TIMED_WAITING： 在指定等待时间内等待另一线程执行操作的线程处于此状态。</li>
+<li>TERMINATED ：结束状态</li>
+</ul>
+<p><img src="/../images/%E9%9D%A2%E8%AF%95%E9%A2%98/4840092-f85e70e2262b7878.png" alt="img"></p>
+<h2 id="二十、sleep-、wait-、join-、yield-的区别"><a href="#二十、sleep-、wait-、join-、yield-的区别" class="headerlink" title="二十、sleep()、wait()、join()、yield()的区别"></a>二十、sleep()、wait()、join()、yield()的区别</h2><ol>
+<li><p>锁池</p>
+<p>所有需要竞争同步锁的线程都会放在锁池当中，比如当前对象的锁已经被其中一个线程得到，则其他线程需要在这个锁池进行等待，当前面的线程释放同步锁后，锁池中的线程去竞争同步锁，当某个线程得到后会进入就绪队列进行等待cpu资源分配。</p>
+</li>
+<li><p>等待池</p>
+<p>当我们调用wait()方法后，线程会放到等待池当中，等待池的线程是不会去竞争同步锁的，只有调用了notify()或notifyAll()后，等待池的线程才会被放到锁池开始竞争同步锁，notify()是随机从等待池中选一个放到锁池，notifyAll()是将等待池的所有线程放到锁池。</p>
+</li>
+</ol>
+<ul>
+<li>sleep是Thread类的静态本地方法，wait则是Object类的本地方法</li>
+<li>sleep方法不会释放lock，但是wait会释放，而且会加入等待队列中</li>
+</ul>
+<blockquote>
+<p>sleep就是把cpu的执行资格和执行权释放出去，不再运行此线程，当定时时间结束再取回cpu资源，参与cpu的调度，获取到cpu资源后就可以继续运行。如果在sleep时，该线程持有锁，那么sleep不会释放该锁，而是把锁带着进入冻结状态，其他线程根本不能获取到锁，无法执行程序。如果在睡眠期间其他线程调用了这个线程的interrupt方法，那么这个线程也会抛出interruptexception异常返回，这点和wait一样。</p>
+</blockquote>
+<ul>
+<li><p>sleep方法不依赖于同步器synchronized，但是wait需要依赖synchronized关键字（要一起配套使用）。</p>
+</li>
+<li><p>sleep不需要被唤醒（休眠之后退出阻塞），但是wait需要（不指定时间的情况下需要）。</p>
+</li>
+<li><p>sleep一般用于当前线程休眠，或者轮循暂停操作，wait则多用于多线程之间的通信。</p>
+</li>
+<li><p>sleep会让出CPU执行时间且强制上下文切换，而wait则不一定，wait后可能还是有机会重新竞争到锁继续执行的。</p>
+</li>
+</ul>
+<p>yield()执行后线程直接进入就绪状态，马上释放了cpu的执行权，但是依然保留了cpu的执行资格，所以有可能cpu下次进行线程调度还会让这个线程获取到执行权继续执行。</p>
+<p>join()执行后当前线程进入阻塞状态，例如在线程B中调用线程A的join()，那线程B会进入到阻塞队列，直到A结束或者中断进程</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">    Thread t1 = <span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                Thread.sleep(<span class="number">3000</span>);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(<span class="string">&quot;222222222&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    t1.start();</span><br><span class="line">    t1.join();</span><br><span class="line">    <span class="comment">//这行代码必须要等到t1全部执行完毕，才会执行，即使t1线程休眠了，也要等到它休眠结束代码执行完毕。</span></span><br><span class="line">    System.out.println(<span class="string">&quot;111111&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">结果：</span><br><span class="line">    <span class="number">222222222</span></span><br><span class="line">    <span class="number">111111</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="二十一、对线程安全的理解"><a href="#二十一、对线程安全的理解" class="headerlink" title="二十一、对线程安全的理解"></a>二十一、对线程安全的理解</h2><p>注意：不是线程安全、应该是内存安全，堆是共享内存，可以被所有线程访问</p>
+<blockquote>
+<p>当多个线程访问同一个对象时，如果不用进行额外的同步控制或其他的协调操作，调用这个对象的行为都可以获得正确的结果，我们就说这个对象是线程安全的。</p>
+</blockquote>
+<h2 id="二十二、Thread、Runnable的区别"><a href="#二十二、Thread、Runnable的区别" class="headerlink" title="二十二、Thread、Runnable的区别"></a>二十二、Thread、Runnable的区别</h2><p>Thread和Runnable的实质是继承关系，没有可比性。无论使用Runnable还是Thread，都会new Thread，然后执行run方法。用法上，如果有复杂的线程操作要求，那就选择继承Thread，如果只是简单的执行一个任务，那就实现Runnable。</p>
+<h2 id="二十三、守护线程（Daemon-Thread）"><a href="#二十三、守护线程（Daemon-Thread）" class="headerlink" title="二十三、守护线程（Daemon Thread）"></a>二十三、守护线程（Daemon Thread）</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/xiarongjin/p/8310144.html">https://www.cnblogs.com/xiarongjin/p/8310144.html</a></p>
+<p>守护线程：为所有非守护线程（用户线程）提供服务的线程；任何一个守护线程都是整个JVM中所有用户线程的保姆；</p>
+<p>守护线程的生死无关紧要，它依赖整个进程而运行，如果其他线程都结束了，程序就结束了，直接就会中断守护线程。</p>
+<p><strong>注意</strong>：由于守护线程的终止是自身无法控制的，因此千万不要把IO、File等重要的操作逻辑分给它，因为不靠谱。</p>
+<p>守护线程举例：GC垃圾回收线程：当我们的系统不再有任何运行的Thread，程序就不会再产生垃圾，垃圾回收器就无事可做，所以当垃圾回收线程是JVM上仅剩的线程时，垃圾回收线程会自动结束。</p>
+<ol>
+<li><p>thread.setDaemon(true)必须在thread.start()之前设置，否则会跑出一个IllegalThreadStateException异常。你不能把正在运行的常规线程设置为守护线程。 </p>
+</li>
+<li><p>在Daemon线程中产生的新线程也是Daemon的。</p>
+</li>
+<li><p>守护线程应该永远不去访问固有资源，如文件、数据库，因为它会在任何时候甚至在一个操作的中间发生中断。</p>
+</li>
+</ol>
+<h2 id="二十四、ThreadLocal的原理和使用场景"><a href="#二十四、ThreadLocal的原理和使用场景" class="headerlink" title="二十四、ThreadLocal的原理和使用场景"></a>二十四、ThreadLocal的原理和使用场景</h2><p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/341005993">https://www.zhihu.com/question/341005993</a></p>
+<p>每一个Thread对象均含有一个ThreadLocalMap类型的成员变量threadLocals，它存储本线程中所有ThreadLocal对象(key)及其对应到值(value)</p>
+<p>ThreadLocalMap由一个个Entry对象组成<br>Entry继承自WeakReference&lt;ThreadLocal&lt;?&gt;&gt;，一个Entry由ThreadLocal对象和Object构成。由此可见，Entry的key是ThreadLocal对象，value是调用set方法时设置的值。Entry的key是是一个弱引用。当没有指向key的强引用后，该key就会被垃圾收集器回收，但是value不会被回收，这个时候ThreadLocalMap中就可能存在key为null但是value不为null的项，这需要<strong>实际的时候使用完毕及时调用remove方法避免内存泄漏</strong>。</p>
+<p><strong>ThreadLocal</strong>的简单使用：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThreadLocalTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> ThreadLocal&lt;String&gt; localVar = <span class="keyword">new</span> ThreadLocal&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">print</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        Thread thread = Thread.currentThread();</span><br><span class="line">        System.out.println(thread.getName() + <span class="string">&quot;:&quot;</span> + localVar.get()); <span class="comment">//打印当前线程中本地内存中本地变量的值</span></span><br><span class="line">        <span class="comment">//localVar.remove(); //清除本地内存中的本地变量</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">        Thread threadA = <span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                localVar.set(<span class="string">&quot;线程A的本地变量&quot;</span>); <span class="comment">//设置线程A中本地变量的值</span></span><br><span class="line">                print();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;, <span class="string">&quot;ThreadA&quot;</span>);</span><br><span class="line"></span><br><span class="line">        Thread threadB = <span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                <span class="comment">//localVar.set(&quot;线程B的本地变量&quot;); //设置线程B中本地变量的值</span></span><br><span class="line">                print();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;, <span class="string">&quot;ThreadB&quot;</span>);</span><br><span class="line"></span><br><span class="line">        threadA.start();</span><br><span class="line">        threadA.join(); <span class="comment">//先执行完A线程再执行B线程</span></span><br><span class="line">        threadB.start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行结果：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ThreadA:线程A的本地变量</span><br><span class="line">ThreadB:null</span><br></pre></td></tr></table></figure>
+
+<p>可以看出，每个线程的ThreadLocal是独立的，线程之间互不影响。</p>
+<p><strong>总结作用</strong>：ThreadLocal的作用主要是做数据隔离，填充的数据只属于当前线程，变量的数据对别的线程而言是相对隔离的，在多线程环境下，如何防止自己的变量被其它线程篡改。</p>
+<p>使用场景：</p>
+<ol>
+<li>在使用对象跨层传递的时候，使用ThreadLocal可以避免多次传递，打破层次间的约束。</li>
+<li>线程间数据隔离</li>
+<li>进行事务操作，用于存储线程事务信息</li>
+<li>数据库连接，Session会话管理。</li>
+</ol>
+<blockquote>
+<p>Spring框架在事务开始时会给当前线程绑定一个Jdbc Connection，在整个事务过程中都是使用该线程绑定的connection来执行数据库操作，实现了事务的隔离性，Spring框架里就是使用ThreadLocal来实现这种隔离的</p>
+</blockquote>
+<h2 id="二十五、ThreadLocal内存泄漏"><a href="#二十五、ThreadLocal内存泄漏" class="headerlink" title="二十五、ThreadLocal内存泄漏"></a>二十五、ThreadLocal内存泄漏</h2><p>介绍一下弱引用：</p>
+<blockquote>
+<p> 只具有弱引用的对象拥有更短暂的生命周期，在垃圾回收器线程扫描它所管辖的内存区域的过程中，一旦发现了只具有弱引用的对象，不管当前内存空间足够与否，都会回收它的内存。  不过，由于垃圾回收器是一个优先级很低的线程，因此不一定会很快发现那些只具有弱引用的对象。  </p>
+</blockquote>
+<p>这就导致了一个问题，ThreadLocal在没有外部强引用时，发生GC时会被回收，如果创建ThreadLocal的线程一直持续运行，那么这个Entry对象中的value就有可能一直得不到回收，发生内存泄露。</p>
+<p>就比如线程池里面的线程，线程都是复用的，那么之前的线程实例处理完之后，出于复用的目的线程依然存活，所以，ThreadLocal设定的value值被持有，导致内存泄露。</p>
+<p>按照道理一个线程使用完，ThreadLocalMap是应该要被清空的，但是现在线程被复用了。</p>
+<h3 id="那怎么解决？"><a href="#那怎么解决？" class="headerlink" title="那怎么解决？"></a><strong>那怎么解决？</strong></h3><p>在代码的最后使用remove就好了，我们只要记得在使用的最后用remove把值清空就好了。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ThreadLocal&lt;String&gt; localName = <span class="keyword">new</span> ThreadLocal();</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    localName.set(<span class="string">&quot;张三&quot;</span>);</span><br><span class="line">    ……</span><br><span class="line">&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">    localName.remove();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>作者：敖丙<br>链接：<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/341005993/answer/1367225682">https://www.zhihu.com/question/341005993/answer/1367225682</a></p>
+<h2 id="二十六、并发、并行、串行的区别"><a href="#二十六、并发、并行、串行的区别" class="headerlink" title="二十六、并发、并行、串行的区别"></a>二十六、并发、并行、串行的区别</h2><ul>
+<li>串行：在时间上不可能发生重叠，前一个任务没有完成，下一个任务只能等待。</li>
+<li>并行：在时间上重叠，两个任务在同一时刻互不干扰的同时执行。</li>
+<li>并发：允许两个任务彼此干扰，同一时间，只有一个任务运行，按照cpu调度交替执行。</li>
+</ul>
+<h2 id="二十七：并发的三大特性"><a href="#二十七：并发的三大特性" class="headerlink" title="二十七：并发的三大特性"></a>二十七：并发的三大特性</h2><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/a529f47d8103">https://www.jianshu.com/p/a529f47d8103</a></p>
+<p>原子性、可见性、有序性</p>
+<ul>
+<li>原子性：</li>
+</ul>
+<p>是指在一个操作中cpu不可以在中途暂停然后再调度，即不被中断操作，要么全部执行，要么都不执行。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">long</span> count = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">calc</span><span class="params">()</span></span>&#123;</span><br><span class="line">	count++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>例子 针对代码 count+=1;至少需要三条 CPU 指令.</p>
+<ol>
+<li><p>将count的值从内存中读取到寄存器中。</p>
+</li>
+<li><p>在寄存器中进行+1操作。</p>
+</li>
+<li><p>将结果写入内存中。</p>
+</li>
+</ol>
+<p>但是当上述三个过程中线程A 刚执行完步骤（1）后，进行了线程切换，线程B重新执行上述操作，最后内存中存储的数据是1而不是2。具体流程如图所示。</p>
+<p><img src="/../images/%E9%9D%A2%E8%AF%95%E9%A2%98/4982424-cca4d4ce88ffad72.png" alt="img"></p>
+<ul>
+<li>可见性</li>
+</ul>
+<p>一个线程对共享变量的修改，另外一个线程能够立刻看到，我们称为可见性。</p>
+<p>每颗 CPU 都有自己的缓存，这时 CPU 缓存与内存的数据一致性就没那么容易解决了，当多个线程在不同的 CPU 上执行时，这些线程操作的是不同的 CPU 缓存。比如下图中，线程 A 操作的是 CPU-1 上的缓存，而线程 B 操作的是 CPU-2 上的缓存，很明显，这个时候线程 A 对变量 V 的操作对于线程 B 而言就不具备可见性了。</p>
+<p><img src="/../images/%E9%9D%A2%E8%AF%95%E9%A2%98/4982424-28b7f63125fe13f3.png" alt="img"></p>
+<p>可见性代码示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConcurrencyTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> idx = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (idx++ &lt; <span class="number">10000</span>) &#123;</span><br><span class="line">            count += <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">        <span class="keyword">final</span> ConcurrencyTest test = <span class="keyword">new</span> ConcurrencyTest();</span><br><span class="line">        <span class="comment">// 创建两个线程，执行add()操作</span></span><br><span class="line">        Thread th1 = <span class="keyword">new</span> Thread(() -&gt; &#123;</span><br><span class="line">            test.add();</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        Thread th2 = <span class="keyword">new</span> Thread(() -&gt; &#123;</span><br><span class="line">            test.add();</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 启动两个线程</span></span><br><span class="line">        th1.start();</span><br><span class="line">        th2.start();</span><br><span class="line">        <span class="comment">// 等待两个线程执行结束</span></span><br><span class="line">        th1.join();</span><br><span class="line">        th2.join();</span><br><span class="line">        System.out.println(count);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>有序性</li>
+</ul>
+<p>有序性指的是程序按照代码的先后顺序执行。编译器为了优化性能，有时候会改变程序中语句的先后顺序，但是不会影响最终的执行结果。有序性比较经典的例子就是利用双重检查创建单例对象。</p>
+<p>例如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> JVMDemo;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SingletonTest</span> </span>&#123;</span><br><span class="line">    <span class="comment">//定义一个INSTANCE，不new</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">volatile</span> SingletonTest instance; <span class="comment">//volatile关键字禁止指令重排，保证有序性。</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//构造方法设为私有的，不让别人new</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">SingletonTest</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//给一个getInstance方法，</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> SingletonTest <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (instance == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="comment">//对当前类加锁</span></span><br><span class="line">            <span class="keyword">synchronized</span> (SingletonTest.class) &#123;</span><br><span class="line">                <span class="keyword">if</span> (instance == <span class="keyword">null</span>) &#123;</span><br><span class="line">                    instance = <span class="keyword">new</span> SingletonTest();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 检验是否正确</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> args</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">100</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">new</span> Thread(() -&gt; System.out.println(SingletonTest.getInstance().hashCode())</span><br><span class="line">            ).start();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>示例来源：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_43234517/article/details/108086364">https://blog.csdn.net/qq_43234517/article/details/108086364</a></p>
+<p>在Java创建对象的时候主要进行以下几个步骤：</p>
+<ol>
+<li>分配一块内存区域W；</li>
+<li>在内存W上初始化 Singleton 对象；</li>
+<li>然后 W 的地址赋值给 instance 变量。</li>
+</ol>
+<p>但是Java在编译的时候会进行编译优化，把方法的执行顺序修改成</p>
+<ol>
+<li>分配一块内存区域W；</li>
+<li>然后 W 的地址赋值给 instance 变量。</li>
+<li>在内存W上初始化 Singleton 对象；</li>
+</ol>
+<p>如果线程A按照优化好的逻辑执行到第（2）步骤给开辟的内存地址分配给instance对象后，线程B的请求也打过来，此时getInstance()方法时 instance 是不等于null的，线程B会认为已经创建好单例对象，直接返回，后面的业务代码在进行对象操作的时候会出现空指针的问题。具体流程如下图所示。</p>
+<p><img src="/../images/%E9%9D%A2%E8%AF%95%E9%A2%98/4982424-4417532994f3b5de.png" alt="img"></p>
+<p>解决方案：instance变量声明时加volatile关键字，禁止指令重排。</p>
+<p>作者：yfsheng<br>链接：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/a529f47d8103">https://www.jianshu.com/p/a529f47d8103</a><br>来源：简书</p>
+<h2 id="二十八、为什么使用线程池、解释参数"><a href="#二十八、为什么使用线程池、解释参数" class="headerlink" title="二十八、为什么使用线程池、解释参数"></a>二十八、为什么使用线程池、解释参数</h2><ol>
+<li>降低资源消耗：提高线程利用率，降低创建的销毁线程的消耗。</li>
+<li>提高响应速度：任务来了，直接有线程可用可执行，而不是先创建线程，再执行。</li>
+<li>提高线程的可管理性：线程是稀缺资源，使用线程池可以统一分配调优监控。</li>
+</ol>
+<p>线程池参数：</p>
+<ol>
+<li><p>corePoolSize（线程池核心线程数）：必须大于或等于0；当向线程池提交一个任务时，若线程池已创建的线程数小于corePoolSize，即便此时存在空闲线程，也会通过创建一个新线程来执行该任务，直到已创建的线程数大于或等于corePoolSize时，才会根据是否存在空闲线程，来决定是否需要创建新的线程。除了利用提交新任务来创建和启动线程（按需构造），也可以通过 prestartCoreThread() 或 prestartAllCoreThreads() 方法来提前启动线程池中的基本线程。</p>
+</li>
+<li><p>maximumPoolSize（线程池最大线程数）：必须大于或等于核心线程数；线程池所允许的最大线程个数。当队列满了，且已创建的线程数小于maximumPoolSize，则线程池会创建新的线程来执行任务。另外，对于无界队列，可忽略该参数。</p>
+</li>
+<li><p>keepAliveTime（线程存活保持时间）默认情况下，当线程池的线程个数多于corePoolSize时，线程的空闲时间超过keepAliveTime则会终止。但只要keepAliveTime大于0，allowCoreThreadTimeOut(boolean) 方法也可将此超时策略应用于核心线程。另外，也可以使用setKeepAliveTime()动态地更改参数。</p>
+</li>
+<li><p>unit（存活时间的单位）：时间单位，分为7类，从细到粗顺序：NANOSECONDS（纳秒），MICROSECONDS（微妙），MILLISECONDS（毫秒），SECONDS（秒），MINUTES（分），HOURS（小时），DAYS（天）；</p>
+</li>
+<li><p>workQueue（任务队列）：用于传输和保存等待执行任务的阻塞队列。可以使用此队列与线程池进行交互：</p>
+<ul>
+<li>如果运行的线程数少于 corePoolSize，则 Executor 始终首选添加新的线程，而不进行排队。</li>
+<li>如果运行的线程数等于或多于 corePoolSize，则 Executor 始终首选将请求加入队列，而不添加新的线程。</li>
+<li>如果无法将请求加入队列，则创建新的线程，除非创建此线程超出 maximumPoolSize，在这种情况下，任务将被拒绝。</li>
+</ul>
+</li>
+<li><p>threadFactory（线程工厂）不能为空，默认为DefaultThreadFactory类；用于创建新线程。由同一个threadFactory创建的线程，属于同一个ThreadGroup，创建的线程优先级都为Thread.NORM_PRIORITY，以及是非守护进程状态。threadFactory创建的线程也是采用new Thread()方式，threadFactory创建的线程名都具有统一的风格：<code>pool-m-thread-n</code>（m为线程池的编号，n为线程池内的线程编号）;</p>
+</li>
+<li><p>handler（线程饱和策略）不能为空，默认策略为ThreadPoolExecutor.AbortPolicy；当线程池和队列都满了，则表明该线程池已达饱和状态。</p>
+<ul>
+<li>ThreadPoolExecutor.AbortPolicy：处理程序遭到拒绝，则直接抛出运行时异常 RejectedExecutionException。(默认策略)</li>
+<li>ThreadPoolExecutor.CallerRunsPolicy：调用者所在线程来运行该任务，此策略提供简单的反馈控制机制，能够减缓新任务的提交速度。</li>
+<li>ThreadPoolExecutor.DiscardPolicy：无法执行的任务将被删除。</li>
+<li>ThreadPoolExecutor.DiscardOldestPolicy：如果执行程序尚未关闭，则位于工作队列头部的任务将被删除，然后重新尝试执行任务（如果再次失败，则重复此过程）。</li>
+</ul>
+</li>
+</ol>
+<h2 id="二十九、线程池用法"><a href="#二十九、线程池用法" class="headerlink" title="二十九、线程池用法"></a>二十九、线程池用法</h2><p><code>Executors</code>类提供了4种不同的线程池：</p>
+<ul>
+<li>newCachedThreadPool：创建一个可缓存的无界线程池，该方法无参数。</li>
+<li>newFixedThreadPool, </li>
+<li>newScheduledThreadPool, </li>
+<li>newSingleThreadExecutor</li>
+</ul>
+<p>详细介绍：</p>
+<ol>
+<li><p>newCachedThreadPool：创建一个可缓存的无界线程池，该方法无参数。当线程池中的线程的空闲时间超过60秒，则会回收该线程，当任务超过线程池的线程数则创建新线程。线程池的大小上限为Integer.MAX_VALUE，可以看作无限大。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">   </span><br></pre></td></tr></table></figure></li>
+</ol>
 
       
 
@@ -395,7 +684,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1"><span class="toc-number">1.</span> <span class="toc-text">一、面向对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81JDK%E3%80%81JRE%E3%80%81JVM%E5%8C%BA%E5%88%AB%E5%92%8C%E8%81%94%E7%B3%BB"><span class="toc-number">2.</span> <span class="toc-text">二、JDK、JRE、JVM区别和联系</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81-%E5%92%8Cequals%E6%AF%94%E8%BE%83"><span class="toc-number">3.</span> <span class="toc-text">三、&#x3D;&#x3D;和equals比较</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81final"><span class="toc-number">4.</span> <span class="toc-text">四、final</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81String%E3%80%81StringBuffer%E3%80%81StringBuilder"><span class="toc-number">5.</span> <span class="toc-text">五、String、StringBuffer、StringBuilder</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E9%87%8D%E8%BD%BD%E5%92%8C%E9%87%8D%E5%86%99"><span class="toc-number">6.</span> <span class="toc-text">六、重载和重写</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E6%8E%A5%E5%8F%A3%E5%92%8C%E6%8A%BD%E8%B1%A1%E7%B1%BB"><span class="toc-number">7.</span> <span class="toc-text">七、接口和抽象类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95%E5%8C%BA%E5%88%AB"><span class="toc-number">7.1.</span> <span class="toc-text">1、基本语法区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E9%9D%A2%E8%AF%95%E9%A2%98%EF%BC%9A%E6%8E%A5%E5%8F%A3%E4%B8%8E%E6%8A%BD%E8%B1%A1%E7%B1%BB%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">7.2.</span> <span class="toc-text">2、面试题：接口与抽象类的区别</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1"><span class="toc-number">1.</span> <span class="toc-text">一、面向对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81JDK%E3%80%81JRE%E3%80%81JVM%E5%8C%BA%E5%88%AB%E5%92%8C%E8%81%94%E7%B3%BB"><span class="toc-number">2.</span> <span class="toc-text">二、JDK、JRE、JVM区别和联系</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81-%E5%92%8Cequals%E6%AF%94%E8%BE%83"><span class="toc-number">3.</span> <span class="toc-text">三、&#x3D;&#x3D;和equals比较</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81final"><span class="toc-number">4.</span> <span class="toc-text">四、final</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81String%E3%80%81StringBuffer%E3%80%81StringBuilder"><span class="toc-number">5.</span> <span class="toc-text">五、String、StringBuffer、StringBuilder</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E9%87%8D%E8%BD%BD%E5%92%8C%E9%87%8D%E5%86%99"><span class="toc-number">6.</span> <span class="toc-text">六、重载和重写</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E6%8E%A5%E5%8F%A3%E5%92%8C%E6%8A%BD%E8%B1%A1%E7%B1%BB"><span class="toc-number">7.</span> <span class="toc-text">七、接口和抽象类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95%E5%8C%BA%E5%88%AB"><span class="toc-number">7.1.</span> <span class="toc-text">1、基本语法区别</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AB%E3%80%81List%E5%92%8CSet"><span class="toc-number">8.</span> <span class="toc-text">八、List和Set</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B9%9D%E3%80%81hashCode%E4%B8%8Eequals"><span class="toc-number">9.</span> <span class="toc-text">九、hashCode与equals</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%81%E3%80%81ArrayList%E5%92%8CLinkedList%E5%8C%BA%E5%88%AB"><span class="toc-number">10.</span> <span class="toc-text">十、ArrayList和LinkedList区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%81%E4%B8%80%E3%80%81HashMap%E5%92%8CHashTable%E5%8C%BA%E5%88%AB"><span class="toc-number">11.</span> <span class="toc-text">十一、HashMap和HashTable区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%81%E4%BA%8C%E3%80%81ConcurrentHashMap%E5%8E%9F%E7%90%86"><span class="toc-number">12.</span> <span class="toc-text">十二、ConcurrentHashMap原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%81%E4%B8%89%E3%80%81%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AAIOC%E5%AE%B9%E5%99%A8"><span class="toc-number">13.</span> <span class="toc-text">十三、如何实现一个IOC容器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%81%E5%9B%9B%E3%80%81%E4%BB%80%E4%B9%88%E6%98%AF%E5%AD%97%E8%8A%82%E7%A0%81%EF%BC%9F%E9%87%87%E7%94%A8%E5%AD%97%E8%8A%82%E7%A0%81%E7%9A%84%E5%A5%BD%E5%A4%84"><span class="toc-number">14.</span> <span class="toc-text">十四、什么是字节码？采用字节码的好处</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%81%E4%BA%94%E3%80%81Java%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8"><span class="toc-number">15.</span> <span class="toc-text">十五、Java类加载器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%81%E5%85%AD%E3%80%81%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE%E6%A8%A1%E5%9E%8B"><span class="toc-number">16.</span> <span class="toc-text">十六、双亲委派模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%81%E4%B8%83%E3%80%81Java%E4%B8%AD%E7%9A%84%E5%BC%82%E5%B8%B8%E4%BD%93%E7%B3%BB"><span class="toc-number">17.</span> <span class="toc-text">十七、Java中的异常体系</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%81%E5%85%AB%E3%80%81GC%E5%A6%82%E4%BD%95%E5%88%A4%E6%96%AD%E5%AF%B9%E8%B1%A1%E5%8F%AF%E4%BB%A5%E5%9B%9E%E6%94%B6"><span class="toc-number">18.</span> <span class="toc-text">十八、GC如何判断对象可以回收</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%81%E4%B9%9D%E3%80%81%E7%BA%BF%E7%A8%8B%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%8F%8A%E7%8A%B6%E6%80%81"><span class="toc-number">19.</span> <span class="toc-text">十九、线程的生命周期及状态</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E5%8D%81%E3%80%81sleep-%E3%80%81wait-%E3%80%81join-%E3%80%81yield-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">20.</span> <span class="toc-text">二十、sleep()、wait()、join()、yield()的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E5%8D%81%E4%B8%80%E3%80%81%E5%AF%B9%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%E7%90%86%E8%A7%A3"><span class="toc-number">21.</span> <span class="toc-text">二十一、对线程安全的理解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E5%8D%81%E4%BA%8C%E3%80%81Thread%E3%80%81Runnable%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">22.</span> <span class="toc-text">二十二、Thread、Runnable的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E5%8D%81%E4%B8%89%E3%80%81%E5%AE%88%E6%8A%A4%E7%BA%BF%E7%A8%8B%EF%BC%88Daemon-Thread%EF%BC%89"><span class="toc-number">23.</span> <span class="toc-text">二十三、守护线程（Daemon Thread）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E5%8D%81%E5%9B%9B%E3%80%81ThreadLocal%E7%9A%84%E5%8E%9F%E7%90%86%E5%92%8C%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-number">24.</span> <span class="toc-text">二十四、ThreadLocal的原理和使用场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E5%8D%81%E4%BA%94%E3%80%81ThreadLocal%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F"><span class="toc-number">25.</span> <span class="toc-text">二十五、ThreadLocal内存泄漏</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%82%A3%E6%80%8E%E4%B9%88%E8%A7%A3%E5%86%B3%EF%BC%9F"><span class="toc-number">25.1.</span> <span class="toc-text">那怎么解决？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E5%8D%81%E5%85%AD%E3%80%81%E5%B9%B6%E5%8F%91%E3%80%81%E5%B9%B6%E8%A1%8C%E3%80%81%E4%B8%B2%E8%A1%8C%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">26.</span> <span class="toc-text">二十六、并发、并行、串行的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E5%8D%81%E4%B8%83%EF%BC%9A%E5%B9%B6%E5%8F%91%E7%9A%84%E4%B8%89%E5%A4%A7%E7%89%B9%E6%80%A7"><span class="toc-number">27.</span> <span class="toc-text">二十七：并发的三大特性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E5%8D%81%E5%85%AB%E3%80%81%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%BF%E7%94%A8%E7%BA%BF%E7%A8%8B%E6%B1%A0%E3%80%81%E8%A7%A3%E9%87%8A%E5%8F%82%E6%95%B0"><span class="toc-number">28.</span> <span class="toc-text">二十八、为什么使用线程池、解释参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E5%8D%81%E4%B9%9D%E3%80%81%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%94%A8%E6%B3%95"><span class="toc-number">29.</span> <span class="toc-text">二十九、线程池用法</span></a></li></ol>
                     </div>
                 </span>
             </div>
