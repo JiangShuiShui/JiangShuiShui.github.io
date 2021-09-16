@@ -138,6 +138,141 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-redis" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>String</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> name jiangshui</span><br><span class="line">get name</span><br><span class="line">APPEND name shui  <span class="comment">#追加拼接字符</span></span><br><span class="line">EXISTS name	<span class="comment">#判断name是否存在</span></span><br><span class="line">keys *  <span class="comment">#查看所有的key</span></span><br><span class="line">EXPIRE name 10 <span class="comment">#设置key的过期时间，单位为秒</span></span><br><span class="line">ttl name  <span class="comment">#查看当前key的剩余时间</span></span><br><span class="line"><span class="built_in">type</span> name <span class="comment">#查看当前key的一个类型</span></span><br><span class="line">incr key  <span class="comment">#将value加1</span></span><br><span class="line">decr key  <span class="comment">#将value减1</span></span><br><span class="line">INCRBY key 10  <span class="comment">#将value设置自增的步长，每次加10</span></span><br></pre></td></tr></table></figure>
+
+<p>List</p>
+<p>所有的list命令都是以L开头</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">LPUSH list one #将一个值或多个值，插入到列表的头部</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/09/16/redis/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-springcloud" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>springcloud</p>
+<p>微服务架构4个核心问题：</p>
+<ol>
+<li>服务很多，客户端该怎么访问？</li>
+<li>这么多服务，服务之间如何通信？</li>
+<li>这么多服务，如何治理？（发现与注册）</li>
+<li>服务挂了怎么办？</li>
+</ol>
+<p>解决方案：<br>       Spring Cloud 生态！  SpringBoot</p>
+<ol>
+<li><p>Spring Cloud NetFlix 一站式解决方案！</p>
+<p>api网关：zuul组件</p>
+<p>Feign — HttpClient —-Http通信方式，同步阻塞</p>
+<p>服务注册发现： Eureka</p>
+<p>熔断机制： Hystrix</p>
+</li>
+<li><p>Apache Dubbo Zokeeper 半自动，需要整合别人的</p>
+<p>API：没有，找第三方组件或自己实现</p>
+<p>Dubbo：</p>
+<p>Zookeeper</p>
+<p>没有：借助Hystrix</p>
+</li>
+<li><p>Spring Cloud Alibaba 一站式解决方案！更简单</p>
+</li>
+</ol>
+<p>新概念：服务网格~ Server Mesh</p>
+<p>万变不离其宗:</p>
+<pre><code>1. API
+ 2. HTTP,RPC
+ 3. 注册与发现
+ 4. 熔断机制
+</code></pre>
+<p><img src="/../images/springcloud/image-20210913153845899.png" alt="image-20210913153845899"></p>
+<p><img src="/../images/springcloud/image-20210914164400093.png" alt="image-20210914164400093"></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/09/12/springcloud/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-面试题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
