@@ -6,15 +6,29 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Archives: 2021 | 江水的小站</title>
+  <title>Mysql笔记 | 江水的小站</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="江水的小站">
-<meta property="og:url" content="http://example.com/archives/2021/index.html">
+  <meta name="description" content="一、深入理解Mysql索引底层数据结构与算法 索引是帮助MySQL高效获取数据的排好序的数据结构  索引数据结构：  二叉树 红黑树 Hash表 B-Tree   Mysql有几种索引？    从数据结构角度：  B+树结构 hash索引 FULLTEXT索引 R-tree索引  从物理存储角度：  聚集索引 非聚集索引  从逻辑角度：  主键索引：主键索引是一种特殊的唯一索引，不允许有空值 普通">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mysql笔记">
+<meta property="og:url" content="http://example.com/2021/10/13/Mysql%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="江水的小站">
+<meta property="og:description" content="一、深入理解Mysql索引底层数据结构与算法 索引是帮助MySQL高效获取数据的排好序的数据结构  索引数据结构：  二叉树 红黑树 Hash表 B-Tree   Mysql有几种索引？    从数据结构角度：  B+树结构 hash索引 FULLTEXT索引 R-tree索引  从物理存储角度：  聚集索引 非聚集索引  从逻辑角度：  主键索引：主键索引是一种特殊的唯一索引，不允许有空值 普通">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2021/10/13/images/Mysql笔记/image-20211013170121323.png">
+<meta property="og:image" content="http://example.com/2021/10/13/images/Mysql笔记/image-20211013170236159.png">
+<meta property="og:image" content="http://example.com/2021/10/13/images/Mysql笔记/image-20211014142121804.png">
+<meta property="og:image" content="http://example.com/2021/10/13/images/Mysql笔记/image-20211014142508841.png">
+<meta property="og:image" content="http://example.com/2021/10/13/images/Mysql笔记/image-20211014142615580.png">
+<meta property="og:image" content="http://example.com/2021/10/13/images/Mysql笔记/B+树.gif">
+<meta property="og:image" content="http://example.com/2021/10/13/images/Mysql笔记/image-20211014142615580.png">
+<meta property="og:image" content="http://example.com/2021/10/13/images/Mysql笔记/image-20211014142637392.png">
+<meta property="og:image" content="http://example.com/images/Mysql%E7%AC%94%E8%AE%B0/image-20211014161433770.png">
+<meta property="article:published_time" content="2021-10-13T08:55:23.000Z">
+<meta property="article:modified_time" content="2021-10-14T09:04:19.220Z">
 <meta property="article:author" content="江水">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2021/10/13/images/Mysql笔记/image-20211013170121323.png">
   
     <link rel="alternative" href="/atom.xml" title="江水的小站" type="application/atom+xml">
   
@@ -136,118 +150,261 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-Mysql笔记" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      Mysql笔记
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/10/13/Mysql%E7%AC%94%E8%AE%B0/" class="archive-article-date">
+
+        
+        <a href="/2021/10/13/Mysql%E7%AC%94%E8%AE%B0/" class="archive-article-date">
   	<time datetime="2021-10-13T08:55:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-13</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/10/13/Mysql%E7%AC%94%E8%AE%B0/">Mysql笔记</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一、深入理解Mysql索引底层数据结构与算法"><a href="#一、深入理解Mysql索引底层数据结构与算法" class="headerlink" title="一、深入理解Mysql索引底层数据结构与算法"></a>一、深入理解Mysql索引底层数据结构与算法</h2><ol>
+<li><p>索引是帮助MySQL高效获取数据的<strong>排好序的数据结构</strong></p>
+</li>
+<li><p>索引数据结构：</p>
+<ul>
+<li>二叉树</li>
+<li>红黑树</li>
+<li>Hash表</li>
+<li>B-Tree</li>
+</ul>
+</li>
+<li><p>Mysql有几种索引？</p>
+</li>
+</ol>
+<blockquote>
+<p>从数据结构角度：</p>
+<ol>
+<li>B+树结构</li>
+<li>hash索引</li>
+<li>FULLTEXT索引</li>
+<li>R-tree索引</li>
+</ol>
+<p>从物理存储角度：</p>
+<ol>
+<li>聚集索引</li>
+<li>非聚集索引</li>
+</ol>
+<p>从逻辑角度：</p>
+<ol>
+<li>主键索引：主键索引是一种特殊的唯一索引，不允许有空值</li>
+<li>普通索引或者单列索引</li>
+<li>复合索引（复合索引）</li>
+<li>唯一索引或非唯一索引</li>
+<li>空间索引</li>
+</ol>
+</blockquote>
+<h4 id="B-Tree"><a href="#B-Tree" class="headerlink" title="B-Tree"></a>B-Tree</h4><ul>
+<li>叶节点具有相同的深度，叶节点的指针为空</li>
+<li>所有索引元素不重复</li>
+<li>节点中的数据索引从左到右递增排列</li>
+</ul>
+<img src="../images/Mysql笔记/image-20211013170121323.png" alt="image-20211013170121323" style="zoom: 80%;" />
 
-        <div class="article-info info-on-right">
-          
-          
+<h4 id="B-Tree-B-Tree变种"><a href="#B-Tree-B-Tree变种" class="headerlink" title="B+Tree(B-Tree变种)"></a>B+Tree(B-Tree变种)</h4><ul>
+<li>非叶子节点不存储data，只存储索引(冗余)，可以放更多的索引</li>
+<li>叶子节点包含所有索引字段</li>
+<li>叶子节点用指针连接，提高区间访问的性能</li>
+<li>叶子节点从小到大顺序排列</li>
+</ul>
+<img src="../images/Mysql笔记/image-20211013170236159.png" alt="image-20211013170236159" style="zoom: 67%;" />
 
+<h3 id="Hash"><a href="#Hash" class="headerlink" title="Hash"></a>Hash</h3><ul>
+<li>对索引的的key进行一次hash计算就可以定位出数据存储的位置</li>
+<li>很多时候Hash索引要比B+树更加高效</li>
+<li>缺点：只能满足“=”，“IN”，<strong>不支持范围查找</strong></li>
+<li>存在Hash冲突的问题</li>
+</ul>
+<img src="../images/Mysql笔记/image-20211014142121804.png" alt="image-20211014142121804" style="zoom:80%;" />
+
+<h3 id="MyISAM"><a href="#MyISAM" class="headerlink" title="MyISAM"></a>MyISAM</h3><p>MyISAM索引文件和数据文件是分离的(非聚集索引：索引和数据不存在一起)</p>
+<img src="../images/Mysql笔记/image-20211014142508841.png" alt="image-20211014142508841" style="zoom:80%;" />
+
+<h3 id="InnoDB索引实现-聚集索引"><a href="#InnoDB索引实现-聚集索引" class="headerlink" title="InnoDB索引实现(聚集索引)"></a>InnoDB索引实现(聚集索引)</h3><img src="../images/Mysql笔记/image-20211014142615580.png" alt="image-20211014142615580" style="zoom: 80%;" />
+
+<ul>
+<li>表数据文件本身就是按B+树组织的一个索引结构文件</li>
+<li>为聚集索引（叶子节点包含了完整的数据记录）</li>
+<li>为什么建议InnoDB表必须建主键，并且推荐使用整形的自增主键？</li>
+</ul>
+<blockquote>
+<p>1、因为InnoDB表需要用B+树结构来组织整张表，假如我们不建立主键，那么Mysql会自己从表中选择一个合适的列作为主键来组织整张表，如果没有合适的列，那么就会建立一个隐藏列，来作为主键组织表结构。<br>2、整形：因为索引是按照大小来进行组织排列的，所以在写入和查询的时候，都要进行频繁的比较大小，而使用整形，无疑是最快的！并且，整形相比字符串等类型，占用空间也是比较小的，节省了内存空间。<br>3、自增主键：B+树是从左到右依次递增的，如果不是自增主键，假如插入一个比之前的数小的主键，那么就要对前排的节点进行重构和整个树的平衡，降低插入效率。如下图：</p>
+<img src="../images/Mysql笔记/B+树.gif" alt="B+树" style="zoom:67%;" />
+</blockquote>
+<ul>
+<li>为什么非主键索引结构叶子节点存储的是主键值？（下图Secondary Key）</li>
+</ul>
+<blockquote>
+<p>节省了存储空间，并且只需要在主键索引插入完成后，非主键索引只需要多插入一条主键数据就完成了索引的维护，容易保持一致性，降低插入的复杂度。</p>
+</blockquote>
+<p><img src="../images/Mysql笔记/image-20211014142615580.png" alt="image-20211014142615580" style="zoom: 50%;" /><img src="../images/Mysql笔记/image-20211014142637392.png" alt="image-20211014142637392" style="zoom: 50%;" /></p>
+<h3 id="联合索引的底层存储结构"><a href="#联合索引的底层存储结构" class="headerlink" title="联合索引的底层存储结构"></a>联合索引的底层存储结构</h3><p>索引最左前缀原理：先比较name，再比较age，最后比较position列，依次排序。所以我们在使用联合索引的时候，不能跳过最左边的列，举例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">select * from employee where name = &#x27;Bill&#x27; and age =31; 正确示范</span><br><span class="line">select * from employee where age =31 and  position = &#x27;dev&#x27; ; 错误示范</span><br><span class="line">select * from employee where position = &#x27;dev&#x27; ;  错误示范</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../images/Mysql%E7%AC%94%E8%AE%B0/image-20211014161433770.png" alt="image-20211014161433770"></p>
+<p>为什么要遵循索引最左前缀来使用查询？</p>
+<blockquote>
+<p>因为跳过第一个字段，直接查询后面的字段，这在索引中是无序的，没有顺序，就会进行全表扫描，所以要使用第一个字段才能走联合索引。</p>
+</blockquote>
+<h2 id="二、Explain详解与索引最佳实践"><a href="#二、Explain详解与索引最佳实践" class="headerlink" title="二、Explain详解与索引最佳实践"></a>二、Explain详解与索引最佳实践</h2>
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2021/10/13/Mysql%E7%AC%94%E8%AE%B0/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/09/16/redis/" class="archive-article-date">
-  	<time datetime="2021-09-16T02:16:45.185Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-16</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/09/12/springcloud/" class="archive-article-date">
-  	<time datetime="2021-09-12T08:27:35.952Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-12</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+<nav id="article-nav">
+  
+  
+    <a href="/2021/09/16/redis/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/07/11/%E9%9D%A2%E8%AF%95%E9%A2%98/" class="archive-article-date">
-  	<time datetime="2021-07-11T03:50:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-11</time>
-</a>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Mysql%E7%B4%A2%E5%BC%95%E5%BA%95%E5%B1%82%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95"><span class="toc-number">1.</span> <span class="toc-text">一、深入理解Mysql索引底层数据结构与算法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#B-Tree"><span class="toc-number">1.0.1.</span> <span class="toc-text">B-Tree</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#B-Tree-B-Tree%E5%8F%98%E7%A7%8D"><span class="toc-number">1.0.2.</span> <span class="toc-text">B+Tree(B-Tree变种)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hash"><span class="toc-number">1.1.</span> <span class="toc-text">Hash</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MyISAM"><span class="toc-number">1.2.</span> <span class="toc-text">MyISAM</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#InnoDB%E7%B4%A2%E5%BC%95%E5%AE%9E%E7%8E%B0-%E8%81%9A%E9%9B%86%E7%B4%A2%E5%BC%95"><span class="toc-number">1.3.</span> <span class="toc-text">InnoDB索引实现(聚集索引)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%81%94%E5%90%88%E7%B4%A2%E5%BC%95%E7%9A%84%E5%BA%95%E5%B1%82%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84"><span class="toc-number">1.4.</span> <span class="toc-text">联合索引的底层存储结构</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81Explain%E8%AF%A6%E8%A7%A3%E4%B8%8E%E7%B4%A2%E5%BC%95%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5"><span class="toc-number">2.</span> <span class="toc-text">二、Explain详解与索引最佳实践</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-    	 
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/07/11/%E9%9D%A2%E8%AF%95%E9%A2%98/">面试题</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
+
+  
 
 
           </div>
@@ -270,8 +427,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

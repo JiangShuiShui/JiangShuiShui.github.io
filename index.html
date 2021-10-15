@@ -138,6 +138,156 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Mysql笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/10/13/Mysql%E7%AC%94%E8%AE%B0/">Mysql笔记</a>
+    </h1>
+  
+
+        
+        <a href="/2021/10/13/Mysql%E7%AC%94%E8%AE%B0/" class="archive-article-date">
+  	<time datetime="2021-10-13T08:55:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-13</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一、深入理解Mysql索引底层数据结构与算法"><a href="#一、深入理解Mysql索引底层数据结构与算法" class="headerlink" title="一、深入理解Mysql索引底层数据结构与算法"></a>一、深入理解Mysql索引底层数据结构与算法</h2><ol>
+<li><p>索引是帮助MySQL高效获取数据的<strong>排好序的数据结构</strong></p>
+</li>
+<li><p>索引数据结构：</p>
+<ul>
+<li>二叉树</li>
+<li>红黑树</li>
+<li>Hash表</li>
+<li>B-Tree</li>
+</ul>
+</li>
+<li><p>Mysql有几种索引？</p>
+</li>
+</ol>
+<blockquote>
+<p>从数据结构角度：</p>
+<ol>
+<li>B+树结构</li>
+<li>hash索引</li>
+<li>FULLTEXT索引</li>
+<li>R-tree索引</li>
+</ol>
+<p>从物理存储角度：</p>
+<ol>
+<li>聚集索引</li>
+<li>非聚集索引</li>
+</ol>
+<p>从逻辑角度：</p>
+<ol>
+<li>主键索引：主键索引是一种特殊的唯一索引，不允许有空值</li>
+<li>普通索引或者单列索引</li>
+<li>复合索引（复合索引）</li>
+<li>唯一索引或非唯一索引</li>
+<li>空间索引</li>
+</ol>
+</blockquote>
+<h4 id="B-Tree"><a href="#B-Tree" class="headerlink" title="B-Tree"></a>B-Tree</h4><ul>
+<li>叶节点具有相同的深度，叶节点的指针为空</li>
+<li>所有索引元素不重复</li>
+<li>节点中的数据索引从左到右递增排列</li>
+</ul>
+<img src="../images/Mysql笔记/image-20211013170121323.png" alt="image-20211013170121323" style="zoom: 80%;" />
+
+<h4 id="B-Tree-B-Tree变种"><a href="#B-Tree-B-Tree变种" class="headerlink" title="B+Tree(B-Tree变种)"></a>B+Tree(B-Tree变种)</h4><ul>
+<li>非叶子节点不存储data，只存储索引(冗余)，可以放更多的索引</li>
+<li>叶子节点包含所有索引字段</li>
+<li>叶子节点用指针连接，提高区间访问的性能</li>
+<li>叶子节点从小到大顺序排列</li>
+</ul>
+<img src="../images/Mysql笔记/image-20211013170236159.png" alt="image-20211013170236159" style="zoom: 67%;" />
+
+<h3 id="Hash"><a href="#Hash" class="headerlink" title="Hash"></a>Hash</h3><ul>
+<li>对索引的的key进行一次hash计算就可以定位出数据存储的位置</li>
+<li>很多时候Hash索引要比B+树更加高效</li>
+<li>缺点：只能满足“=”，“IN”，<strong>不支持范围查找</strong></li>
+<li>存在Hash冲突的问题</li>
+</ul>
+<img src="../images/Mysql笔记/image-20211014142121804.png" alt="image-20211014142121804" style="zoom:80%;" />
+
+<h3 id="MyISAM"><a href="#MyISAM" class="headerlink" title="MyISAM"></a>MyISAM</h3><p>MyISAM索引文件和数据文件是分离的(非聚集索引：索引和数据不存在一起)</p>
+<img src="../images/Mysql笔记/image-20211014142508841.png" alt="image-20211014142508841" style="zoom:80%;" />
+
+<h3 id="InnoDB索引实现-聚集索引"><a href="#InnoDB索引实现-聚集索引" class="headerlink" title="InnoDB索引实现(聚集索引)"></a>InnoDB索引实现(聚集索引)</h3><img src="../images/Mysql笔记/image-20211014142615580.png" alt="image-20211014142615580" style="zoom: 80%;" />
+
+<ul>
+<li>表数据文件本身就是按B+树组织的一个索引结构文件</li>
+<li>为聚集索引（叶子节点包含了完整的数据记录）</li>
+<li>为什么建议InnoDB表必须建主键，并且推荐使用整形的自增主键？</li>
+</ul>
+<blockquote>
+<p>1、因为InnoDB表需要用B+树结构来组织整张表，假如我们不建立主键，那么Mysql会自己从表中选择一个合适的列作为主键来组织整张表，如果没有合适的列，那么就会建立一个隐藏列，来作为主键组织表结构。<br>2、整形：因为索引是按照大小来进行组织排列的，所以在写入和查询的时候，都要进行频繁的比较大小，而使用整形，无疑是最快的！并且，整形相比字符串等类型，占用空间也是比较小的，节省了内存空间。<br>3、自增主键：B+树是从左到右依次递增的，如果不是自增主键，假如插入一个比之前的数小的主键，那么就要对前排的节点进行重构和整个树的平衡，降低插入效率。如下图：</p>
+<img src="../images/Mysql笔记/B+树.gif" alt="B+树" style="zoom:67%;" />
+</blockquote>
+<ul>
+<li>为什么非主键索引结构叶子节点存储的是主键值？（下图Secondary Key）</li>
+</ul>
+<blockquote>
+<p>节省了存储空间，并且只需要在主键索引插入完成后，非主键索引只需要多插入一条主键数据就完成了索引的维护，容易保持一致性，降低插入的复杂度。</p>
+</blockquote>
+<p><img src="../images/Mysql笔记/image-20211014142615580.png" alt="image-20211014142615580" style="zoom: 50%;" /><img src="../images/Mysql笔记/image-20211014142637392.png" alt="image-20211014142637392" style="zoom: 50%;" /></p>
+<h3 id="联合索引的底层存储结构"><a href="#联合索引的底层存储结构" class="headerlink" title="联合索引的底层存储结构"></a>联合索引的底层存储结构</h3><p>索引最左前缀原理：先比较name，再比较age，最后比较position列，依次排序。所以我们在使用联合索引的时候，不能跳过最左边的列，举例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">select * from employee where name = &#x27;Bill&#x27; and age =31; 正确示范</span><br><span class="line">select * from employee where age =31 and  position = &#x27;dev&#x27; ; 错误示范</span><br><span class="line">select * from employee where position = &#x27;dev&#x27; ;  错误示范</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../images/Mysql%E7%AC%94%E8%AE%B0/image-20211014161433770.png" alt="image-20211014161433770"></p>
+<p>为什么要遵循索引最左前缀来使用查询？</p>
+<blockquote>
+<p>因为跳过第一个字段，直接查询后面的字段，这在索引中是无序的，没有顺序，就会进行全表扫描，所以要使用第一个字段才能走联合索引。</p>
+</blockquote>
+<h2 id="二、Explain详解与索引最佳实践"><a href="#二、Explain详解与索引最佳实践" class="headerlink" title="二、Explain详解与索引最佳实践"></a>二、Explain详解与索引最佳实践</h2>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/10/13/Mysql%E7%AC%94%E8%AE%B0/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-redis" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
