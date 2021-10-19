@@ -108,3 +108,5 @@ select * from employee where position = 'dev' ;  错误示范
 
 ## 二、Explain详解与索引最佳实践
 
+![image-20210909205934869](../images/Mysql笔记/image-20210909205934869.png)
+
