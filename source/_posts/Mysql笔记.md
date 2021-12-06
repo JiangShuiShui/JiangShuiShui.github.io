@@ -108,3 +108,155 @@ select * from employee where position = 'dev' ;  错误示范
 
 ## 二、Explain详解与索引最佳实践
 
+### Explain分析实例
+
+参考官方文档：https://dev.mysql.com/doc/refman/5.7/en/explain-output.html
+
+~~~mysql
+示例表：
+drop table if EXISTS `actor`;
+create table `actor` (
+	`id` int(11) not null,
+	`name` varchar(45) default null,
+	`update_time` datetime default null,
+	primary key (`id`)
+) ENGINE=InnoDB default charset=utf8;
+
+drop table if exists `film`;
+CREATE TABLE `film`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(10) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+	KEY `idx_name` (`name`)
+)ENGINE=InnoDB default charset=utf8;
+
+drop table if exists `film_actor`;
+CREATE TABLE `film_actor`  (
+  `id` int(11) NOT NULL,
+  `film_id` int(11) NOT NULL,
+  `actor_id` int(11) NOT NULL,
+  `remark` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+	key `idx_film_actor_id` (`film_id`,`actor_id`)
+)ENGINE=InnoDB default charset=utf8;
+
+INSERT INTO `actor` (`id`, `name`, `update_time`) VALUES (1,'a','2017‐12‐22 15:27:18'), (2,'b','2017‐12‐22 15:27:18'), (3,'c','2017‐12‐22 15:27:18');
+INSERT INTO `film` (`id`, `name`) VALUES (3,'film0'),(1,'film1'),(2,'film2');
+INSERT INTO `film_actor` (`id`, `film_id`, `actor_id`) VALUES (1,1,1),(2,1,2),(3,2,1);
+~~~
+
+explain示例：
+
+~~~mysql
+explain select * from actor;
+~~~
+
+![image-20211019153409345](../images/Mysql笔记/image-20211019153409345.png)
+
+### explain 两个变种
+
+1. **explain extended**：会在explain的基础上额外提供一些查询优化的信息。额外还有filtered列，是一个半分比的值，rows*filtered/100可以估算出将要和explain中前一个表进行连接的行数（前一个表指 explain 中的id值比当前表id值小的表）。紧随explain语句其后通过 `show warnings` 命令可以得到优化后的查询语句，从而看出优化器优化了什么。
+
+   ~~~mysql
+   explain extended select * from film where id = 1;
+   ~~~
+
+   ![image-20211019154836076](../images/Mysql笔记/image-20211019154836076.png)
+
+   ~~~mysql
+   show warnings;
+   ~~~
+
+   ![image-20211019155253699](../images/Mysql笔记/image-20211019155253699.png)
+
+2. **explain partitions**：相比 explain 多了个 partitions 字段，如果查询是基于分区表的话，会显示查询将访问的分区。
+
+### explain中的列
+
+接下来展示explain中每个列的信息
+
+1. **id列**
+
+   id列的编号是select的序列号，有几个select就有几个id，并且id的顺序是按照select出现的顺序增长的。id列值越大优先级越高，id相同则从上到下执行，id为null的最后执行。
+
+2. **select_type列**
+
+   select_type表示对应行是简单还是复杂查询。
+
+   * simple：简单查询。该语句不包含子查询和union
+
+     ~~~mysql
+     explain select * from film where id = 2;
+     ~~~
+
+     ![image-20211019160324007](../images/Mysql笔记/image-20211019160324007.png)
+
+   * primary：复杂查询语句中最外层的select
+   * subquery：包含在select中的子查询（不在from子句中）
+   * derived：包含在from子句中的子查询。Mysql会将结果存放在一张临时表中，也叫派生表
+
+   一个例子：了解primary、subquery和derived类型
+
+   ~~~mysql
+   set session optimizer_switch='derived_merge=off'; #关闭mysql5.7新特性对衍生表的合并优化 
+   explain select (select 1 from actor where id = 1) from (select * from film where id = 1) der;
+   ~~~
+
+   ![image-20211019161017926](../images/Mysql笔记/image-20211019161017926.png)
+
+   * union：在union中的第二个和随后的select
+
+     ~~~mysql
+     explain select 1 union all select 1;
+     ~~~
+
+     ![image-20211019162619421](../images/Mysql笔记/image-20211019162619421.png)
+
+3. **table列**
+
+   这一列表示explain的这一行正在访问哪张表。
+
+   当 from 子句中有子查询时，table列是 <derivenN> 格式，表示当前查询依赖 id=N 的查询，于是先执行 id=N 的查询。
+
+   当有 union 时，UNION RESULT 的 table 列的值为<union1,2>，1和2表示参与 union 的 select 行id。 
+
+4. **type列**
+
+   这一列表示**关联类型或访问类型**，即Mysql决定如何查询表中的行，查找数据行记录的大概范围。
+
+   从最优到最差依次为：**system > const > eq_ref > ref > range >index > all**
+
+   一般来说，**要保证查询达到range级别，最好达到ref**
+
+   * **Null**：mysql能够在优化阶段分解查询语句，在执行阶段用不着再访问表或索引。例如：在索引中选取最小值，可以单独查找索引来完成，不需要在执行时访问表
+
+     ~~~mysql
+     explain select min(id) from film;
+     ~~~
+
+     ![image-20211019170008951](../images/Mysql笔记/image-20211019170008951.png)
+
+   * **const，system**：mysql能对查询的某些部分进行优化并将其转化成一个常量（可以看show warnings的结果）。用于primary key 或 unique key的所有列与常数比较时，所有表最多有一个匹配行，读取1次，速度比较快。**system是const的特例**，表里只有一条数据匹配时为system
+
+     ~~~mysql
+     explain extended select * from (select * from film where id = 1) tmp;
+     ~~~
+
+     ![image-20211019171016447](../images/Mysql笔记/image-20211019171016447.png)
+
+     ~~~mysql
+     show warnings;
+     ~~~
+
+     ![image-20211019172300376](../images/Mysql笔记/image-20211019172300376.png)
+
+   * **eq_ref**：primary key或 unique key索引的所有部分被连接使用，最多会返回一条符合条件的记录。这可能是在const之外最好发连接类型了，简单的select查询不会出现这种type。
+
+     ~~~mysql
+     explain select * from film_actor left join film on film_actor.film_id = film.id;
+     ~~~
+
+     ![image-20211021105743168](../images/Mysql笔记/image-20211021105743168.png)
+
+   * **ref**：相比eq_ref，不使用唯一索引
+

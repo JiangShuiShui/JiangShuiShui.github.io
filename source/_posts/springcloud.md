@@ -39,10 +39,6 @@ springcloud
 万变不离其宗:
 
 	1. API
- 	2. HTTP,RPC
- 	3. 注册与发现
- 	4. 熔断机制
-
-![image-20210913153845899](../images/springcloud/image-20210913153845899.png)
-
-![image-20210914164400093](../images/springcloud/image-20210914164400093.png)
+	2. HTTP,RPC
+	3. 注册与发现
+	4. 熔断机制
